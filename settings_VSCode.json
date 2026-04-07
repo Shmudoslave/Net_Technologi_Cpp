@@ -1,0 +1,18 @@
+{
+    "http.proxy": "",
+    "http.proxyStrictSSL": false,
+    "http.proxySupport": "off",
+    "extensions.autoUpdate": false,
+    "extensions.autoCheckUpdates": false,
+    "security.workspace.trust.untrustedFiles": "open",
+    "files.autoSave": "afterDelay",
+    "git.autofetch": true,
+    "explorer.confirmDelete": false,
+    "git.enableSmartCommit": true,
+    "git.openRepositoryInParentFolders": "always",
+    "workbench.settings.applyToAllProfiles": [
+        
+
+    ]
+    
+}
