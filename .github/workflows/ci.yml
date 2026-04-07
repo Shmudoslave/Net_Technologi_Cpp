@@ -22,12 +22,14 @@ jobs:
     - name: Start client-test
       run: g++ -Wall -Wextra echo_client.cpp -o client_echo
 
-    - name: Start python-server
-      run: python3 echo_server.py & SERVER_PID=$!
-           sleep 2
-           ./client_echo
-           CLIENT_EXIT=$?
-           kill $SERVER_PID
-           exit $CLIENT_EXIT
+    - name: Run echo test
+      run: 
+        python3 echo_server.py &
+        SERVER_PID=$!
+        sleep 2
+        ./echo_client
+        CLIENT_EXIT=$?
+        kill $SERVER_PID
+        exit $CLIENT_EXIT
 
     
