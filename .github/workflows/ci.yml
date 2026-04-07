@@ -2,29 +2,27 @@ name: C++ CI
 
 on:
   push:
-    branches: ["main", "master"]
+    branches: [ "master" ]
   pull_request:
-    branches: ["main", "master"]
+    branches: [ "master" ]
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v4
-
-    - name: Install g++, Python3
-      run: sudo apt-get update 
-           sudo apt-get install -y g++ python3
-
-    - name: Compile main.cpp
-      run: g++ -Wall -Wextra main.cpp -o main
-
-    - name: Start client-test
-      run: g++ -Wall -Wextra echo_client.cpp -o client_echo
-
+    
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y g++ python3
+    
+    - name: Compile echo client
+      run: g++ -Wall -Wextra echo_client.cpp -o echo_client
+    
     - name: Run echo test
-      run: 
+      run: |
         python3 echo_server.py &
         SERVER_PID=$!
         sleep 2
@@ -32,5 +30,3 @@ jobs:
         CLIENT_EXIT=$?
         kill $SERVER_PID
         exit $CLIENT_EXIT
-
-    
